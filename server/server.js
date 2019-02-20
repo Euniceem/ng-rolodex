@@ -3,7 +3,8 @@ const app = express();
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const redis = require('connect-redis')(session);
-
+const contacts = require('./routes/contacts');
+const users = require('./routes/users');
 
 const PORT = process.env.NG_HOST_PORT || 8080;
 const ENV = process.env.NODE_ENV;
@@ -21,7 +22,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(express.static('public'));
-
+app.use('/api/contacts', contacts);
+app.use('/api/users', users);
 
 app.get('/', (req, res) => {
   return res.send('smoke test');
