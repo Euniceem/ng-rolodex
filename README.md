@@ -1,5 +1,3 @@
-# NgRobolex
-
 ng-rolodex
 Angular 2+ Exercise
 
