@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "dev": "node server/server.js"
   },
   "private": true,
   "dependencies": {
@@ -19,7 +20,16 @@
     "@angular/platform-browser": "~7.2.0",
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
+    "body-parser": "^1.18.3",
+    "bookshelf": "^0.14.2",
+    "connect-redis": "^3.4.0",
     "core-js": "^2.5.4",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "knex": "^0.16.3",
+    "pg": "^7.8.0",
+    "pg-hstore": "^2.3.2",
+    "redis": "^2.8.0",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"
