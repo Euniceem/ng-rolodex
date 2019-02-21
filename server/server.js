@@ -52,13 +52,11 @@ passport.deserializeUser((user, done) => {
     });
 });
 
-
 passport.use(new LocalStrategy(function (username, password, done) {
   return new User({ username: username })
     .fetch()
     .then(user => {
       user = user.toJSON();
-
       if (user === null) {
         return done(null, false, { message: 'bad username or password' });
       }
