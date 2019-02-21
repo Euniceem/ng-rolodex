@@ -43,8 +43,8 @@ passport.deserializeUser((user, done) => {
       dbUser = dbUser.toJSON();
       console.log('dbUser', dbUser)
       return done(null, {
-        id: user.id,
-        username: user.username
+        id: dbUser.id,
+        username: dbUser.username
       });
     })
     .catch((err) => {

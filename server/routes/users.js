@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Users = require('../../database/models/User');
+const User = require('../../database/models/User');
 
 //AUTHENTICATION
 function isAuthenticated(req, res, next) {
@@ -10,9 +10,13 @@ function isAuthenticated(req, res, next) {
   }
 }
 
-router.get('/profile', (req, res) => {
+router.get('/profile', isAuthenticated, (req, res) => {
+  let userId = req.user.id;
 
-  return Users.fetchAll()
+  return User.where({ id: userId })
+    .fetch({
+      columns: ['id', 'username', 'name', 'email', 'address']
+    })
     .then(users => {
       res.json(users);
     })
@@ -21,15 +25,34 @@ router.get('/profile', (req, res) => {
     })
 });
 
-router.put('/users', (req, res) => {
+router.put('/users', isAuthenticated, (req, res) => {
+  let userId = req.user.id;
+  let body = req.body;
+
+  return User.where({ id: userId })
+    .fetch({
+      columns: ['id', 'username', 'name', 'email', 'address']
+    })
+    .save({
+      username: body.username,
+      name: body.name,
+      email: body.email,
+      address: body.address
+    })
+    .then(user => {
+      res.json('Successfully edited');
+    })
+    .catch(err => {
+      res.json(err);
+    })
+});
+
+router.post('/login', isAuthenticated, (res, req) => {
+
 
 });
 
-router.post('/login', (res, req) => {
-
-});
-
-router.post('/logout', (req, res) => {
+router.post('/logout', isAuthenticated, (req, res) => {
 
 });
 
