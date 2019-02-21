@@ -47,20 +47,4 @@ router.put('/users', isAuthenticated, (req, res) => {
     })
 });
 
-router.post('/login', isAuthenticated, (res, req) => {
-
-
-});
-
-router.post('/logout', isAuthenticated, (req, res) => {
-
-});
-
-router.post('/register', (req, res) => {
-
-});
-
-
-
-
 module.exports = router;

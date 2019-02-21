@@ -12,14 +12,14 @@ const users = require('./routes/users');
 const PORT = process.env.NG_HOST_PORT || 8080;
 const ENV = process.env.NODE_ENV;
 const SESSION_SECRET = process.env.SESSION_SECRET
-// app.use(session({
-//   store: new redis({ url: `${process.env.REDIS_URL}:${process.env.REDIS_HOST_PORT}`, logErrors: true }),
-//   secret: SESSION_SECRET,
-//   resave: false,
-//   saveUninitialized: false,
-//   // cookie: { secure: ENV === 'production' }
 
-// }));
+app.use(session({
+  store: new redis({ url: `${process.env.REDIS_URL}:${process.env.REDIS_HOST_PORT}`, logErrors: true }),
+  secret: SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+
+}));
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -41,7 +41,6 @@ passport.deserializeUser((user, done) => {
   return new User({ id: user.id }).fetch()
     .then(dbUser => {
       dbUser = dbUser.toJSON();
-      console.log('dbUser', dbUser)
       return done(null, {
         id: dbUser.id,
         username: dbUser.username
@@ -58,7 +57,6 @@ passport.use(new LocalStrategy(function (username, password, done) {
   return new User({ username: username })
     .fetch()
     .then(user => {
-      console.log(user)
       user = user.toJSON();
 
       if (user === null) {
