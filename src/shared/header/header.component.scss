@@ -1,0 +1,44 @@
+div {
+  margin: 0;
+  padding: 0px;
+  background-color: grey;
+  display: inline-flex;
+  justify-content: flex-end;
+  width: 100%;
+  
+  div{
+    font-family: 'Bungee Inline', cursive;
+    width: 60%;
+    text-align: center;
+    margin: auto;
+    justify-content: flex-start;
+    a {text-decoration: none; color: white; font-size: 30px;} 
+  }
+
+  ul{
+  display: inline-flex;
+  
+    li{
+      list-style-type: none;
+      margin-right: 15px;
+      a {text-decoration: none; color: white;} 
+    }
+
+    button{
+      background-color: #358ED8;
+      border-radius: 12px;
+      padding: 12px, 28px;
+      font-size: 14px;
+      color: white;
+      width: 70px;
+      height: 40px;
+    }
+
+    button:hover{
+      background-color: white;
+      color: #358ED8;
+      border: solid 1px #358ED8;
+    }
+  }
+
+}
