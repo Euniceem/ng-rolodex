@@ -5,7 +5,7 @@ class Contact extends bookshelf.Model {
   get timestamps() { return true; }
 
   created() {
-    return this.belongsTo('users', 'created_by');
+    return this.belongsTo('User', 'created_by');
   }
 }
 
