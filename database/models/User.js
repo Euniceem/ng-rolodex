@@ -6,6 +6,7 @@ class User extends bookshelf.Model {
 
   created() {
     return this.hasMany('Contact', 'created_by');
+
   }
 }
 
