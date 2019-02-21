@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 
-export class BackendService {
-  constructor(private http: HttpClient) { }
+export class LoginguardService {
+  constructor() { }
+
+
 }
