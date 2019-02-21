@@ -15,7 +15,8 @@ exports.seed = function (knex, Promise) {
           email: 'Barry_Allen@gmail.com',
           twitter: 'the_flash',
           instagram: 'the_flash',
-          github: 'lighting_speed'
+          github: 'lighting_speed',
+          created_by: 1
         },
         {
           id: 2,
@@ -27,7 +28,8 @@ exports.seed = function (knex, Promise) {
           email: 'Oliver_Queen@gmail.com',
           twitter: 'green_arrow',
           instagram: 'green_arrow',
-          github: 'oli_queen'
+          github: 'oli_queen',
+          created_by: 1
         },
         {
           id: 3,
@@ -39,7 +41,8 @@ exports.seed = function (knex, Promise) {
           email: 'KDanvers@gmail.com',
           twitter: 'Kara_Danvers',
           instagram: 'KDanvers',
-          github: 'KaraDanvers'
+          github: 'KaraDanvers',
+          created_by: 1
         },
 
       ]);
