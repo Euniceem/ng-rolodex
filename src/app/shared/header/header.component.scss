@@ -29,6 +29,7 @@
 
     ul{
       display: inline-flex;
+      margin: auto;
     
       li{
         list-style-type: none;
@@ -39,7 +40,7 @@
     }
         button{
           background-color: #358ED8;
-          margin-top: 20%;
+          margin-top: 25%;
           border-radius: 12px;
           padding: 12px, 28px;
           font-size: 14px;
