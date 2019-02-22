@@ -8,6 +8,14 @@ import { HttpClient } from '@angular/common/http';
 export class BackendService {
   constructor(private http: HttpClient) { }
 
+  profile(user) {
+    return this.http.get('/api/profile', user).toPromise();
+  }
+
+  editProfile(user) {
+    return this.http.put('/api/users', user).toPromise();
+  }
+
   register(user) {
     return Promise.resolve({});
   }

@@ -1,3 +1,5 @@
+$button-color: #358ED8;
+
 .header-container {
   margin: 0;
   padding: 0;
@@ -39,7 +41,7 @@
   
     }
         button{
-          background-color: #358ED8;
+          background-color: $button-color;
           margin-top: 25%;
           border-radius: 12px;
           padding: 12px, 28px;
@@ -51,8 +53,8 @@
     
         button:hover{
           background-color: white;
-          color: #358ED8;
-          border: solid 1px #358ED8;
+          color: $button-color;
+          border: solid 1px $button-color;
         }
   
   }
