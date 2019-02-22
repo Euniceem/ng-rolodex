@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { BackendService } from '../../services/backend.service';
 
 @Component({
   templateUrl: './profile.component.html',
@@ -6,5 +7,19 @@ import { Component } from '@angular/core';
 })
 
 export class ProfileComponent {
-  constructor() { }
+  profileData: {
+    username: string,
+    name: string,
+    email: string,
+    address: string
+  } = {
+      username: '',
+      name: '',
+      email: '',
+      address: ''
+    }
+
+  constructor() {
+
+  }
 }
