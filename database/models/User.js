@@ -5,9 +5,10 @@ class User extends bookshelf.Model {
   get timeStamps() { return true; }
 
   created() {
-    return this.hasMany('Contact');
+    return this.hasMany('Contact', 'created_by');
+
   }
 }
 
 
-module.exports = bookshelf.Model('User', User);
+module.exports = bookshelf.model('User', User);

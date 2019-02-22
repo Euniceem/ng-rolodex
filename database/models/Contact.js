@@ -1,11 +1,12 @@
 const bookshelf = require('./bookshelf');
+require('./User');
 
 class Contact extends bookshelf.Model {
   get tableName() { return 'contacts'; }
   get timestamps() { return true; }
 
   created() {
-    return this.belongsTo('User', 'created_by');
+    return this.belongsTo('User', 'id', 'created_by');
   }
 }
 
