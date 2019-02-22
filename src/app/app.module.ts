@@ -14,7 +14,7 @@ import { AddContactComponent } from './pages/add-contact/addContact.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 
 //Shared Components
-import { HeaderComponent } from '../shared/header/header.component';
+import { HeaderComponent } from './shared/header/header.component';
 
 @NgModule({
   declarations: [

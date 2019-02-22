@@ -5,15 +5,15 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { AddContactComponent } from './pages/add-contact/addContact.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { LoginComponent } from './pages/login/login.component';
-
+import { LoginGuard } from './guards/login-guard.service';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'contact', component: ContactComponent },
-  { path: 'add-contact', component: AddContactComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: '', canActivate: [LoginGuard], component: HomeComponent },
+  { path: 'contact', canActivate: [LoginGuard], component: ContactComponent },
+  { path: 'add-contact', canActivate: [LoginGuard], component: AddContactComponent },
+  { path: 'profile', canActivate: [LoginGuard], component: ProfileComponent },
   { path: 'login', component: LoginComponent },
-  { path: '**', redirectTo: '', pathMatch: 'full' }
+  { path: '**', redirectTo: '/login', pathMatch: 'full' }
 ];
 
 @NgModule({

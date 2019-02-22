@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { BackendService } from './backend.service';
 import { SessionService } from './session.service';
 import { Router } from '@angular/router';
-import { Session } from 'protractor';
 
 @Injectable({
   providedIn: 'root'
