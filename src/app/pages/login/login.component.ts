@@ -13,7 +13,7 @@ export class LoginComponent {
   } = {
     username: '',
     password: ''
-    };
+      };
 
   constructor(
     private auth: AuthService,

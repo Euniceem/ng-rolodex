@@ -10,7 +10,7 @@ export class SessionService {
   } = {
     loggedIn: false,
     username: ''
-    };
+      };
 
   constructor() {
     let userString = window.localStorage.getItem('user');
