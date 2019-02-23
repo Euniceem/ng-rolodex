@@ -11,14 +11,13 @@ const users = require('./routes/users');
 
 const PORT = process.env.NG_HOST_PORT || 8080;
 const ENV = process.env.NODE_ENV;
-const SESSION_SECRET = process.env.SESSION_SECRET
+const SESSION_SECRET = process.env.SESSION_SECRET 
 
 app.use(session({
   store: new redis({ url: `${process.env.REDIS_URL}:${process.env.REDIS_HOST_PORT}`, logErrors: true }),
   secret: SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
-
 }));
 
 app.use(passport.initialize());
