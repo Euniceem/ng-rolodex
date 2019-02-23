@@ -1,9 +1,13 @@
-h1 {
+title{
+  h1{
+    text-align: center;
+  }
+}h1 {
   padding: 15px;
   text-align: center;
 }
 
-.login-container {
+.register-container {
   width: 100%;
   max-width: 400px;
   background-color: #ddd;

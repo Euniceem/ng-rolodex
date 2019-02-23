@@ -8,17 +8,17 @@ const LocalStrategy = require('passport-local');
 const bcrypt = require('bcryptjs');
 const contacts = require('./routes/contacts');
 const users = require('./routes/users');
+const User = require('../database/models/User')
 
 const PORT = process.env.NG_HOST_PORT || 8080;
 const ENV = process.env.NODE_ENV;
-const SESSION_SECRET = process.env.SESSION_SECRET
+const SESSION_SECRET = process.env.SESSION_SECRET 
 
 app.use(session({
   store: new redis({ url: `${process.env.REDIS_URL}:${process.env.REDIS_HOST_PORT}`, logErrors: true }),
   secret: SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
-
 }));
 
 app.use(passport.initialize());

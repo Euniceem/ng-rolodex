@@ -16,17 +16,14 @@ export class BackendService {
   }
 
   register(user) {
-    return Promise.resolve({});
+    return this.http.post('/api/register', user).toPromise();
   }
 
   login(user) {
-    return Promise.resolve({
-      id: 1,
-      username: user.username
-    })
+   return this.http.post('/api/login', user).toPromise();
   }
 
   logout() {
-    return Promise.resolve({});
+    return this.http.post('/api/logout', null).toPromise();
   }
 }

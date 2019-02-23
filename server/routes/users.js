@@ -1,12 +1,16 @@
 const express = require('express');
 const router = express.Router();
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const bcrypt = require('bcryptjs');
 const User = require('../../database/models/User');
+const saltRounds = 12;
 
 //AUTHENTICATION
 function isAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { next(); }
   else {
-    res.redirect('/login');
+    res.json({success:'fail'});
   }
 }
 
@@ -46,5 +50,44 @@ router.put('/users', isAuthenticated, (req, res) => {
       res.json(err);
     })
 });
+
+router.post('/login', passport.authenticate('local'), (req, res) => {
+ return res.json({success: "Login successful"})
+});
+
+router.post('/logout', (req, res) => {
+  req.logout();
+  res.end()
+});
+
+router.post('/register', (req, res) => {
+
+    bcrypt.genSalt(saltRounds, (err, salt) => {
+      if (err) {
+        res.status(500);
+        res.send(err)
+      }
+  
+      bcrypt.hash(req.body.password, salt, function (err, hash) {
+        if (err) {
+          res.status(500);
+          res.send(err);
+        }
+  
+        return new User({
+          username: req.body.username,
+          password: hash
+        })
+          .save()
+          .then((user) => {
+            res.json({success: 'true'})
+          })
+          .catch((err) => {
+            res.status(500)
+            return res.send('Error Creating account');
+          });
+      })
+    })   
+  });
 
 module.exports = router;
