@@ -3,15 +3,14 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-
 export class SessionService {
   user: {
     loggedIn: boolean,
     username: string
   } = {
-      loggedIn: false,
-      username: ''
-    };
+    loggedIn: false,
+    username: ''
+  };
 
   constructor() {
     let userString = window.localStorage.getItem('user');

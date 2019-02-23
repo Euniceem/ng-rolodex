@@ -6,15 +6,14 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-
 export class LoginComponent {
   loginFormData: {
     username: string,
     password: string
   } = {
-      username: '',
-      password: ''
-    };
+    username: '',
+    password: ''
+  };
 
   constructor(
     private auth: AuthService,
@@ -24,7 +23,6 @@ export class LoginComponent {
   login() {
     this.auth.login(this.loginFormData)
       .then(() => {
-        console.log('User logged in!');
         const redirectUrl = this.auth.redirectUrl;
         if (redirectUrl) {
           this.router.navigate([redirectUrl])
@@ -34,7 +32,7 @@ export class LoginComponent {
         }
       })
       .catch((err) => {
-        console.log('error:', err);
+        this.router.navigate(['/login'])
       })
   }
 }

@@ -8,7 +8,6 @@ import { SessionService } from '../../services/session.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-
 export class HeaderComponent {
   user: Object;
 

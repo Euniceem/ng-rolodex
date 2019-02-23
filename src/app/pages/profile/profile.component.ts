@@ -5,7 +5,6 @@ import { BackendService } from '../../services/backend.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-
 export class ProfileComponent {
   profileData: {
     username: string,
