@@ -9,7 +9,7 @@ $button-color: #358ED8;
 
 .profile-container{
   width: 450px;
-  height: 325px;
+  height: 260px;
   margin: auto;
   border: 3px solid grey;
   font-size: 20px;
@@ -20,24 +20,21 @@ $button-color: #358ED8;
   }
 
   .editbutton{
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 20%; 
 
     button{
-      background-color: $button-color;
-      border: 1px solid white;
-      border-radius: 12px;
-      font-size: 15px;
-      color: white;
-      width: 100px;
-      height: 40px;
+    background-color: $button-color;
+    width: 100%;
+    border-radius: 8px;
+    height: 30px;
+    color: white;
+    font-size: 14px;
+    margin-top: 20px;
     }
 
     button:hover{
       background-color: white;
       color: $button-color;
-      border: solid 1px $button-color;
+      border: solid 1px grey;
     }
   }
 }
