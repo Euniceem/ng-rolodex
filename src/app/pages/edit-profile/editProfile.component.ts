@@ -20,6 +20,8 @@ export class EditProfileComponent implements OnInit {
     address: ''
   }
 
+  invalidEditProfile: boolean = false;
+
   constructor(
     private backend: BackendService,
     private router: Router
@@ -31,8 +33,7 @@ export class EditProfileComponent implements OnInit {
         this.router.navigate(['/profile']);
       })
       .catch((err) => {
-        alert('Error Message:' + err);
-        this.router.navigate(['/edit-profile']);
+        return this.invalidEditProfile = true;
       });
     }
 
@@ -41,11 +42,9 @@ export class EditProfileComponent implements OnInit {
     .then((data)=> {
       for(var key in data){
         if(this.editProfileData.hasOwnProperty(key)){
-          console.log(this.editProfileData)
           this.editProfileData[key] = data[key]
         }
       }
     });
   }
-
 };

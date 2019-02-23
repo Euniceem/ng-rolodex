@@ -6,27 +6,32 @@
   <form>
 
     <div>
-      <label for="username">Username: </label>
-      <input type="text" name="username" [(ngModel)]="editFormData.username">
-    </div>
-
-    <div>
       <label for="name">Name: </label>
-      <input type="text" name="name" [(ngModel)]="editFormData.name">
+    </div>
+    <div>
+      <input class="input" type="text" name="name" [(ngModel)]="this.editProfileData.name">
     </div>
 
     <div>
       <label for="email">Email: </label>
-      <input type="text" name="email" [(ngModel)]="editFormData.email">
+    </div>
+    <div>  
+      <input class="input" type="text" name="email" [(ngModel)]="this.editProfileData.email">
     </div>
 
     <div>
       <label for="address">Address: </label>
-      <input type="text" name="address" [(ngModel)]="editFormData.address">
+    </div>
+    <div>  
+      <input class="input" type="text" name="address" [(ngModel)]="this.editProfileData.address">
     </div>
 
     <div>
-      <button class="btn" (click)="editSubmit">Submit</button>
+      <button class="btn" (click)="editSubmit()">Submit</button>
+    </div>
+
+    <div class="err" [hidden]="!invalidEditProfile">
+      Error couldn't edit profile, please try again
     </div>
 
   </form>
