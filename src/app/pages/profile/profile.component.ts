@@ -21,7 +21,5 @@ export class ProfileComponent {
 
   constructor(private backend: BackendService) { }
 
-  editform() {
 
-  }
 }
