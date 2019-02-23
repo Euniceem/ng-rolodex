@@ -6,20 +6,29 @@ import { Injectable } from '@angular/core';
 export class SessionService {
   user: {
     loggedIn: boolean,
-    username: string
+    username: string,
+    id: Number
   } = {
     loggedIn: false,
-    username: ''
+    username: '',
+    id: 0
   };
 
   constructor() {
     let userString = window.localStorage.getItem('user');
     try {
       if (userString) { this.user = JSON.parse(userString); }
-      else { console.log('user was not found') }
+      else { 
+        this.user.loggedIn = false;
+        this.user.username = '';
+        this.user.id = 0;
+      }
     }
     catch (err) {
-      console.log('could not parse user')
+      window.localStorage.removeItem('user')
+      this.user.loggedIn = false;
+      this.user.username = '';
+      this.user.id = 0;
     }
   }
 
@@ -30,6 +39,7 @@ export class SessionService {
   setSession(user) {
     this.user.username = user.username;
     this.user.loggedIn = true;
+    this.user.id = user.id;
 
     let userString = JSON.stringify(this.user);
     window.localStorage.setItem('user', userString);
@@ -38,6 +48,7 @@ export class SessionService {
   clearSession() {
     this.user.loggedIn = false;
     this.user.username = '';
+    this.user.id = 0;
     window.localStorage.removeItem('user');
   }
 

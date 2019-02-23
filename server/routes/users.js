@@ -10,7 +10,7 @@ const saltRounds = 12;
 function isAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { next(); }
   else {
-    res.json({success:'fail'});
+    res.json({success:'failed to authorize'});
   }
 }
 
@@ -29,16 +29,15 @@ router.get('/profile', isAuthenticated, (req, res) => {
     })
 });
 
-router.put('/users', isAuthenticated, (req, res) => {
+router.put('/edit-profile', isAuthenticated, (req, res) => {
   let userId = req.user.id;
   let body = req.body;
+  console.log("userid, body:", userId, body)
 
   return User.where({ id: userId })
-    .fetch({
-      columns: ['id', 'username', 'name', 'email', 'address']
-    })
     .save({
       username: body.username,
+      password: body.password,
       name: body.name,
       email: body.email,
       address: body.address

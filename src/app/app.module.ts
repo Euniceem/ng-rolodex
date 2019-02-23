@@ -14,6 +14,7 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { AddContactComponent } from './pages/add-contact/addContact.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { EditProfileComponent } from './pages/edit-profile/editProfile.component';
 
 //Shared Components
 import { HeaderComponent } from './shared/header/header.component';
@@ -27,7 +28,8 @@ import { HeaderComponent } from './shared/header/header.component';
     ContactComponent,
     AddContactComponent,
     ProfileComponent,
-    RegisterComponent
+    RegisterComponent,
+    EditProfileComponent
   ],
   imports: [
     FormsModule,
