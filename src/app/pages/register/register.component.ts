@@ -26,6 +26,7 @@ export class RegisterComponent {
       this.router.navigate(['/login']);
     })
     .catch((err) => { 
+      alert('Error Message:' + err);
       this.router.navigate(['/register']);
     });
   }

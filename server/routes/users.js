@@ -52,8 +52,7 @@ router.put('/users', isAuthenticated, (req, res) => {
 });
 
 router.post('/login', passport.authenticate('local'), (req, res) => {
-  if (req.isAuthenticated()) {return res.json({success: 'true'})}
-  else {return res.json({success: 'fail '})}
+ return res.json({success: "Login successful"})
 });
 
 router.post('/logout', (req, res) => {
@@ -89,6 +88,5 @@ router.post('/register', (req, res) => {
       })
     })
   });
-
 
 module.exports = router;
