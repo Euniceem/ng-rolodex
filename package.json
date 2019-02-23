@@ -9,7 +9,6 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "dev": "./node_modules/nodemon/bin/nodemon.js ./server/server.js"
-    
   },
   "private": true,
   "dependencies": {

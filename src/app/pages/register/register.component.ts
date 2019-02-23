@@ -15,6 +15,8 @@ export class RegisterComponent {
       password: ''
     };
 
+  registerInvalid: boolean = false;
+
   constructor( 
     private auth: AuthService,
     private router: Router
@@ -26,7 +28,7 @@ export class RegisterComponent {
       this.router.navigate(['/login']);
     })
     .catch((err) => { 
-      this.router.navigate(['/register']);
+      return this.registerInvalid = true;
     });
   }
 }
