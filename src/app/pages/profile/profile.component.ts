@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BackendService } from '../../services/backend.service';
 
 @Component({
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
   profileData: {
     username: string,
     name: string,
@@ -20,5 +20,12 @@ export class ProfileComponent {
 
   constructor(private backend: BackendService) { }
 
-
+ngOnInit() {
+  this.backend.profile()
+  .then((data)=> {
+    for (var key in data) {
+      this.profileData[key] = data[key];
+    }
+  })
+}
 }

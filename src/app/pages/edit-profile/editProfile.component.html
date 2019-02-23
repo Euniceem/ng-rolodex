@@ -1,0 +1,29 @@
+<div class="title">
+  <h1>Edit My Profile</h1>
+</div>
+
+<div class="edit-profile-component">
+  <form>
+
+    <div>
+      <label for="username">Username: </label>
+      <input type="text" name="username" [(ngModel)]="editFormData.username">
+    </div>
+
+    <div>
+      <label for="name">Name: </label>
+      <input type="text" name="name" [(ngModel)]="editFormData.name">
+    </div>
+
+    <div>
+      <label for="email">Email: </label>
+      <input type="text" name="email" [(ngModel)]="editFormData.email">
+    </div>
+
+    <div>
+      <label for="address">Address: </label>
+      <input type="text" name="address" [(ngModel)]="editFormData.address">
+    </div>
+
+  </form>
+</div>
