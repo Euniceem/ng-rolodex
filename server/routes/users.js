@@ -61,19 +61,19 @@ router.post('/logout', (req, res) => {
 });
 
 router.post('/register', (req, res) => {
-   
+
     bcrypt.genSalt(saltRounds, (err, salt) => {
       if (err) {
         res.status(500);
         res.send(err)
       }
-
+  
       bcrypt.hash(req.body.password, salt, function (err, hash) {
         if (err) {
           res.status(500);
           res.send(err);
         }
-
+  
         return new User({
           username: req.body.username,
           password: hash
@@ -83,10 +83,11 @@ router.post('/register', (req, res) => {
             res.json({success: 'true'})
           })
           .catch((err) => {
+            res.status(500)
             return res.send('Error Creating account');
           });
       })
-    })
+    })   
   });
 
 module.exports = router;

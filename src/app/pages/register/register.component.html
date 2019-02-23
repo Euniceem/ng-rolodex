@@ -4,12 +4,16 @@
 
 <div class="register-container">
   <form>
-    <input type="text" name="username" placeholder="username">
+    <input type="text" name="username" [class.error]="registerInvalid && username.touched" 
+    [(ngModel)]="registerFormData.username" placeholder="username" #username="ngModel">
 
-    <input type="text" name="password" placeholder="password">
+    <input type="text" name="password" placeholder="password" [(ngModel)]="registerFormData.password">
 
-    <button class="btn" (click)="register()">
+    <button class="btn" (click)="register()" [disabled]="registerInvalid">
       Register
     </button>
+    <div [hidden]="!(registerInvalid && username.touched)">
+      Username is already in use, Please try again
+    </div>
   </form>
 </div>
