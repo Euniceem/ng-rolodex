@@ -12,7 +12,7 @@ export class BackendService {
   }
 
   editProfile(user) {
-    return this.http.put('/api/users', user).toPromise();
+    return this.http.put('/api/users/id', user).toPromise();
   }
 
   register(user) {
