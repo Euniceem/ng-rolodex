@@ -25,12 +25,13 @@ export class EditProfileComponent implements OnInit {
     private router: Router
   ) { }
 
-  editProfile() {
+  editSubmit() {
     this.backend.editProfile(this.editProfileData)
       .then(() => {
         this.router.navigate(['/profile']);
       })
       .catch((err) => {
+        alert('Error Message:' + err);
         this.router.navigate(['/edit-profile']);
       });
     }
@@ -40,6 +41,7 @@ export class EditProfileComponent implements OnInit {
     .then((data)=> {
       for(var key in data){
         if(this.editProfileData.hasOwnProperty(key)){
+          console.log(this.editProfileData)
           this.editProfileData[key] = data[key]
         }
       }

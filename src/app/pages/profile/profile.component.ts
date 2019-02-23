@@ -24,6 +24,7 @@ ngOnInit() {
   this.backend.profile()
   .then((data)=> {
     for (var key in data) {
+      console.log(this.profileData)
       this.profileData[key] = data[key];
     }
   })
