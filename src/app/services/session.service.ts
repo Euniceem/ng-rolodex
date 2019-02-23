@@ -8,8 +8,8 @@ export class SessionService {
     loggedIn: boolean,
     username: string
   } = {
-      loggedIn: false,
-      username: ''
+    loggedIn: false,
+    username: ''
     };
 
   constructor() {

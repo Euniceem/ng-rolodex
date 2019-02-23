@@ -30,7 +30,7 @@ export class AuthService {
     return this.backend.logout()
       .then(() => {
         this.session.clearSession();
-        return this.router.navigate(['./login'])
+        return this.router.navigate(['/login'])
       })
   }
 }
