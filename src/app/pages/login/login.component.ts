@@ -32,7 +32,7 @@ export class LoginComponent {
         }
       })
       .catch((err) => {
-        this.router.navigate(['/login'])
+        this.router.navigate(['/register'])
       })
   }
 }
