@@ -8,6 +8,7 @@ const LocalStrategy = require('passport-local');
 const bcrypt = require('bcryptjs');
 const contacts = require('./routes/contacts');
 const users = require('./routes/users');
+const User = require('../database/models/User')
 
 const PORT = process.env.NG_HOST_PORT || 8080;
 const ENV = process.env.NODE_ENV;

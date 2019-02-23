@@ -4,12 +4,13 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const bcrypt = require('bcryptjs');
 const User = require('../../database/models/User');
+const saltRounds = 12;
 
 //AUTHENTICATION
 function isAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { next(); }
   else {
-    res.redirect('/login');
+    res.json({success:'fail'});
   }
 }
 
@@ -50,25 +51,18 @@ router.put('/users', isAuthenticated, (req, res) => {
     })
 });
 
-router.post('/login', (req, res) => {
-  if (req.isAuthenticated()) {return res.redirect('/contacts')}
-  else {return res.redirect('/register')}
+router.post('/login', passport.authenticate('local'), (req, res) => {
+  if (req.isAuthenticated()) {return res.json({success: 'true'})}
+  else {return res.json({success: 'fail '})}
 });
 
 router.post('/logout', (req, res) => {
-  console.log('hit logout')
   req.logout();
   res.end()
 });
 
 router.post('/register', (req, res) => {
-  User.where({ username: req.body.username })
-  .fetch()
-  .then(dbUser => {
-    if (dbUser) {
-      return res.redirect('/register');
-    }
-
+   
     bcrypt.genSalt(saltRounds, (err, salt) => {
       if (err) {
         res.status(500);
@@ -87,7 +81,7 @@ router.post('/register', (req, res) => {
         })
           .save()
           .then((user) => {
-            res.redirect('/login');
+            res.json({success: 'true'})
           })
           .catch((err) => {
             return res.send('Error Creating account');
@@ -95,6 +89,6 @@ router.post('/register', (req, res) => {
       })
     })
   });
-})
+
 
 module.exports = router;
