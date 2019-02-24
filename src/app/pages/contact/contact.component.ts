@@ -34,10 +34,10 @@ export class ContactComponent implements OnInit {
   ngOnInit() {
     return this.backend.contacts()
       .then((data) => {
-        for (var key in data) {
-          console.log(this.contactData)
-          this.contactData[key] = data[key];
-        }
+        console.log(data)
+        // for (var key in data) {
+        //   this.contactData[key] = data[key];
+        // }
       })
   }
 }
