@@ -9,7 +9,15 @@ export class BackendService {
   constructor(
     private http: HttpClient,
     private session: SessionService
-    ) { }
+  ) { }
+
+  contacts() {
+    return this.http.get('/').toPromise();
+  }
+
+  addContact(card) {
+    return this.http.post('/', card).toPromise();
+  }
 
   profile() {
     const user = this.session.getSession();
@@ -25,7 +33,7 @@ export class BackendService {
   }
 
   login(user) {
-   return this.http.post('/api/login', user).toPromise();
+    return this.http.post('/api/login', user).toPromise();
   }
 
   logout() {
