@@ -1,18 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { SessionService } from '../services/session.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BackendService {
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private session: SessionService
+  ) { }
 
-  profile(user) {
-    return this.http.get('/api/profile', user).toPromise();
+  profile() {
+    const user = this.session.getSession();
+    return this.http.get(`/api/profile?user=${user.id}`).toPromise();
   }
 
-  editProfile(user) {
-    return this.http.put('/api/users/id', user).toPromise();
+  editProfile(profileData) {
+    return this.http.put('/api/users', profileData).toPromise();
   }
 
   register(user) {
@@ -20,7 +25,7 @@ export class BackendService {
   }
 
   login(user) {
-   return this.http.post('/api/login', user).toPromise();
+    return this.http.post('/api/login', user).toPromise();
   }
 
   logout() {

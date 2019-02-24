@@ -6,6 +6,7 @@ import { AddContactComponent } from './pages/add-contact/addContact.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { EditProfileComponent } from './pages/edit-profile/editProfile.component';
 import { AuthGuard } from './guards/auth.guard.service';
 
 const routes: Routes = [
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'contact', canActivate: [AuthGuard], component: ContactComponent },
   { path: 'add-contact', canActivate: [AuthGuard], component: AddContactComponent },
   { path: 'profile', canActivate: [AuthGuard], component: ProfileComponent },
-  { path: 'register', component: RegisterComponent},
+  { path: 'profile/edit', canActivate: [AuthGuard], component: EditProfileComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: '**', redirectTo: 'login', pathMatch: 'full' }
 ];

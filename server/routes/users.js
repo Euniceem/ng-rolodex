@@ -10,7 +10,7 @@ const saltRounds = 12;
 function isAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { next(); }
   else {
-    res.json({success:'fail'});
+    res.json({ success: 'fail' });
   }
 }
 
@@ -34,15 +34,11 @@ router.put('/users', isAuthenticated, (req, res) => {
   let body = req.body;
 
   return User.where({ id: userId })
-    .fetch({
-      columns: ['id', 'username', 'name', 'email', 'address']
-    })
     .save({
-      username: body.username,
       name: body.name,
       email: body.email,
       address: body.address
-    })
+    }, { patch: true })
     .then(user => {
       res.json('Successfully edited');
     })
@@ -52,7 +48,7 @@ router.put('/users', isAuthenticated, (req, res) => {
 });
 
 router.post('/login', passport.authenticate('local'), (req, res) => {
- return res.json({success: "Login successful"})
+  return res.json({ success: "Login successful" })
 });
 
 router.post('/logout', (req, res) => {
@@ -62,32 +58,32 @@ router.post('/logout', (req, res) => {
 
 router.post('/register', (req, res) => {
 
-    bcrypt.genSalt(saltRounds, (err, salt) => {
+  bcrypt.genSalt(saltRounds, (err, salt) => {
+    if (err) {
+      res.status(500);
+      res.send(err)
+    }
+
+    bcrypt.hash(req.body.password, salt, function (err, hash) {
       if (err) {
         res.status(500);
-        res.send(err)
+        res.send(err);
       }
-  
-      bcrypt.hash(req.body.password, salt, function (err, hash) {
-        if (err) {
-          res.status(500);
-          res.send(err);
-        }
-  
-        return new User({
-          username: req.body.username,
-          password: hash
-        })
-          .save()
-          .then((user) => {
-            res.json({success: 'true'})
-          })
-          .catch((err) => {
-            res.status(500)
-            return res.send('Error Creating account');
-          });
+
+      return new User({
+        username: req.body.username,
+        password: hash
       })
-    })   
-  });
+        .save()
+        .then((user) => {
+          res.json({ success: 'true' })
+        })
+        .catch((err) => {
+          res.status(500)
+          return res.send('Error Creating account');
+        });
+    })
+  })
+});
 
 module.exports = router;
