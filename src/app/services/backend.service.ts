@@ -10,6 +10,7 @@ export class BackendService {
     private http: HttpClient,
     private session: SessionService
   ) { }
+<<<<<<< HEAD
 
   contacts() {
     return this.http.get('/').toPromise();
@@ -18,6 +19,8 @@ export class BackendService {
   addContact(card) {
     return this.http.post('/', card).toPromise();
   }
+=======
+>>>>>>> dev
 
   profile() {
     const user = this.session.getSession();
@@ -25,7 +28,7 @@ export class BackendService {
   }
 
   editProfile(profileData) {
-    return this.http.put('/api/edit-profile', profileData).toPromise();
+    return this.http.put('/api/users', profileData).toPromise();
   }
 
   register(user) {
