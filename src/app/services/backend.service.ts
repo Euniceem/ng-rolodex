@@ -9,7 +9,7 @@ export class BackendService {
   constructor(
     private http: HttpClient,
     private session: SessionService
-    ) { }
+  ) { }
 
   profile() {
     const user = this.session.getSession();
@@ -17,7 +17,7 @@ export class BackendService {
   }
 
   editProfile(profileData) {
-    return this.http.put('/api/users', profileData).toPromise();
+    return this.http.put('/api/profile/edit', profileData).toPromise();
   }
 
   register(user) {
@@ -25,7 +25,7 @@ export class BackendService {
   }
 
   login(user) {
-   return this.http.post('/api/login', user).toPromise();
+    return this.http.post('/api/login', user).toPromise();
   }
 
   logout() {
