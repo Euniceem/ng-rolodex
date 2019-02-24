@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'contact', canActivate: [AuthGuard], component: ContactComponent },
   { path: 'add-contact', canActivate: [AuthGuard], component: AddContactComponent },
   { path: 'profile', canActivate: [AuthGuard], component: ProfileComponent },
-  { path: 'edit', canActivate: [AuthGuard], component: EditProfileComponent },
+  { path: 'profile/edit', canActivate: [AuthGuard], component: EditProfileComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: '**', redirectTo: 'login', pathMatch: 'full' }
