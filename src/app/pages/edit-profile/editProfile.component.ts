@@ -38,7 +38,7 @@ export class EditProfileComponent implements OnInit {
     }
 
   ngOnInit () {
-    this.backend.editProfile(this.editProfileData)
+    this.backend.profile()
     .then((data)=> {
       for(var key in data){
         if(this.editProfileData.hasOwnProperty(key)){
