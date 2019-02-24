@@ -17,7 +17,7 @@ export class BackendService {
   }
 
   editProfile(profileData) {
-    return this.http.put('/api/profile/edit', profileData).toPromise();
+    return this.http.put('/api/users', profileData).toPromise();
   }
 
   register(user) {

@@ -29,7 +29,7 @@ router.get('/profile', isAuthenticated, (req, res) => {
     })
 });
 
-router.put('/profile/edit', isAuthenticated, (req, res) => {
+router.put('/users', isAuthenticated, (req, res) => {
   let userId = req.user.id;
   let body = req.body;
 
