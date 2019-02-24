@@ -22,7 +22,6 @@ router.get('/profile', isAuthenticated, (req, res) => {
       columns: ['id', 'username', 'name', 'email', 'address']
     })
     .then(users => {
-      console.log(users)
       res.json(users);
     })
     .catch(err => {
@@ -30,7 +29,7 @@ router.get('/profile', isAuthenticated, (req, res) => {
     })
 });
 
-router.put('/edit-profile', isAuthenticated, (req, res) => {
+router.put('/users', isAuthenticated, (req, res) => {
   let userId = req.user.id;
   let body = req.body;
 
