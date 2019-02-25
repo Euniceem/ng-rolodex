@@ -9,16 +9,16 @@ export class SessionService {
     username: string,
     id: Number
   } = {
-    loggedIn: false,
-    username: '',
-    id: 0
-  };
+      loggedIn: false,
+      username: '',
+      id: 0
+    };
 
   constructor() {
     let userString = window.localStorage.getItem('user');
     try {
       if (userString) { this.user = JSON.parse(userString); }
-      else { 
+      else {
         this.user.loggedIn = false;
         this.user.username = '';
         this.user.id = 0;
