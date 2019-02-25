@@ -1,1 +1,26 @@
-<h1>Home Sample</h1>
+<div class="home-container">
+  <form>
+    <input type="text" name="searchbar" class="searchbar" placeholder="Search Contacts..."
+      [(ngModel)]="searchData.stringData" #searchbar="ngModel">
+
+    <button class="btn" (click)="searchInput()"><i class="fa fa-search"></i></button>
+  </form>
+</div>
+
+<div class="contact-container" *ngFor="let contact of contactData">
+  <div class="title">
+    <h2 class="name">{{contact.name}}</h2>
+  </div>
+
+  <div class="card-container">
+    <p class="address">Address: {{contact.address}}</p>
+    <p class="mobile">Mobile: {{contact.mobile}}</p>
+    <p class="work">Work: {{contact.work}}</p>
+    <p class="home">Home: {{contact.home}}</p>
+    <p class="email">Email: {{contact.email}}</p>
+    <p class="twitter">Twitter: {{contact.twitter}}</p>
+    <p class="instagram">Instagram: {{contact.instagram}}</p>
+    <p class="github">Github: {{contact.github}}</p>
+  </div>
+
+</div>
