@@ -24,24 +24,22 @@ router.get('/', isAuthenticated, (req, res) => {
 
 router.get('/search/:term', isAuthenticated, (req, res) => {
   let userId = req.user.id;
+  let term = `%${req.params.term}`
 
   return Contact.query((search) => {
     search.where('created_by', userId)
       .andWhere(() => {
-        let term = `%${req.params.term}%`
-        this.whereRaw('LOWER(name) LIKE ?', term)
-          .orWhereRaw('LOWER(address) LIKE ?', term)
-          .orWhereRaw('LOWER(mobile) LIKE ?', term)
-          .orWhereRaw('LOWER(work) LIKE ?', term)
-          .orWhereRaw('LOWER(email) LIKE ?', term)
-          .orWhereRaw('LOWER(twitter) LIKE ?', term)
-          .orWhereRaw('LOWER(instagram) LIKE ?', term)
-          .orWhereRaw('LOWER(github) LIKE ?', term)
+        search.whereRaw('LOWER(name) LIKE ?', term.toLowerCase() + '%')
+          .orWhereRaw('LOWER(address) LIKE ?', term.toLowerCase() + '%')
+          .orWhereRaw('LOWER(mobile) LIKE ?', term.toLowerCase() + '%')
+          .orWhereRaw('LOWER(work) LIKE ?', term.toLowerCase() + '%')
+          .orWhereRaw('LOWER(email) LIKE ?', term.toLowerCase() + '%')
+          .orWhereRaw('LOWER(twitter) LIKE ?', term.toLowerCase() + '%')
+          .orWhereRaw('LOWER(instagram) LIKE ?', term.toLowerCase() + '%')
+          .orWhereRaw('LOWER(github) LIKE ?', term.toLowerCase() + '%')
       })
   })
-    .fetchAll({
-      columns: ['name', 'address', 'mobile', 'work', 'home', 'email', 'twitter', 'instagram', 'github']
-    })
+    .fetchAll()
     .then(contacts => {
       res.json(contacts);
     })
