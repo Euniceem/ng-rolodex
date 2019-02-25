@@ -3,15 +3,25 @@
 </div>
 
 <div class="contact-container">
-  <div class="card-container">
-    <div class="name">Name: {{contactData.name}}</div>
-    <div class="address">Address: {{contactData.address}}</div>
-    <div class="mobile">Mobile: </div>
-    <div class="work">Work: </div>
-    <div class="home">Home: </div>
-    <div class="email">Email: </div>
-    <div class="twitter">Twitter: </div>
-    <div class="instagram">Instagram: </div>
-    <div class="github">Github: </div>
+  <div class="card-container" *ngFor="let contact of contactData">
+    <div class="title">Contact Info:</div>
+    <div class="name">Name: {{contact.name}}</div>
+    <div class="address">Address: {{contact.address}}</div>
+    <div class="mobile">Mobile: {{contact.mobile}}</div>
+    <div class="work">Work: {{contact.work}}</div>
+    <div class="home">Home: {{contact.home}}</div>
+    <div class="email">Email: {{contact.email}}</div>
+    <div class="twitter">Twitter: {{contact.twitter}}</div>
+    <div class="instagram">Instagram: {{contact.instagram}}</div>
+    <div class="github">Github: {{contact.github}}</div>
+
+    <div class="btn-container">
+      <button routerLink="/contact/edit/{{contact.id}}" class="btn">Edit</button>
+    </div>
+
+    <div class="btn-container">
+      <button class="btn" (click)="deleteContactSubmitForm(contact.id)">Delete</button>
+    </div>
+
   </div>
 </div>

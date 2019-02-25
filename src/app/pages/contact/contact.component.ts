@@ -1,43 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { BackendService } from '../../services/backend.service';
 
 @Component({
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss']
 })
-export class ContactComponent implements OnInit {
+export class ContactComponent {
 
-  contactData: {
-    name: string,
-    address: string,
-    mobile: string,
-    work: string,
-    home: string,
-    email: string,
-    twitter: string,
-    instagram: string,
-    github: string
-  } = {
-      name: '',
-      address: '',
-      mobile: '',
-      work: '',
-      home: '',
-      email: '',
-      twitter: '',
-      instagram: '',
-      github: ''
-    }
+  contactData: object = [];
 
-  constructor(private backend: BackendService) { }
+  constructor(
+    private backend: BackendService,
+    private router: Router
+  ) { }
+
+  deleteContactSubmitForm(id) {
+    return this.backend.deleteContact(id)
+      .then(() => {
+        this.router.navigate(['/contacts'])
+      })
+  }
 
   ngOnInit() {
     return this.backend.contacts()
       .then((data) => {
-        console.log(data)
-        // for (var key in data) {
-        //   this.contactData[key] = data[key];
-        // }
+        this.contactData = data;
       })
   }
 }
