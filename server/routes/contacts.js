@@ -28,7 +28,7 @@ router.get('/search/:term', isAuthenticated, (req, res) => {
 
   return Contact.query((search) => {
     search.where('created_by', userId)
-      .andWhere(() => {
+      .andWhere((search) => {
         search.whereRaw('LOWER(name) LIKE ?', term.toLowerCase() + '%')
           .orWhereRaw('LOWER(address) LIKE ?', term.toLowerCase() + '%')
           .orWhereRaw('LOWER(mobile) LIKE ?', term.toLowerCase() + '%')
@@ -49,7 +49,6 @@ router.get('/search/:term', isAuthenticated, (req, res) => {
 });
 
 router.post('/', isAuthenticated, (req, res) => {
-  let userId = req.user.id;
   let body = req.body;
 
   return Contact
