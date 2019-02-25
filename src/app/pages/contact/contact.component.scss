@@ -1,0 +1,48 @@
+$button-color: #358ED8;
+
+.title{
+  text-align: center;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.contact-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 80%;
+  margin: auto;
+
+  .card-container{
+    border: 2px solid grey;
+    width: 400px;
+    margin-top: 20px;
+    box-shadow: 10px 10px grey;
+
+    div{
+      margin-left: 10px;
+    }
+
+    .btn-container{
+      display: flex;
+      justify-content: space-between;
+      margin: 10px; 
+
+      .btn{
+        width: 80px;
+        height: 30px;
+        border-radius: 8px;
+        background-color: $button-color;
+        color: white;
+      }
+
+      .btn:hover{
+        background-color: white;
+        color: $button-color;
+        border: solid 1px grey;
+      }
+    }
+  }
+}
