@@ -13,7 +13,7 @@ function isAuthenticated(req, res, next) {
 router.get('/', isAuthenticated, (req, res) => {
   let userId = req.user.id;
 
-  return Contact.fetchAll({ createdby: userId })
+  return Contact.fetchAll({ created_by: userId })
     .then(contacts => {
       res.json(contacts);
     })
@@ -51,10 +51,10 @@ router.get('/search/:term', isAuthenticated, (req, res) => {
 });
 
 router.post('/', isAuthenticated, (req, res) => {
-  let id = req.params.id;
+  let userId = req.user.id;
   let body = req.body;
 
-  return new Contact({ id: id })
+  return Contact
     .forge({
       name: body.name,
       address: body.address,
@@ -64,18 +64,19 @@ router.post('/', isAuthenticated, (req, res) => {
       email: body.email,
       twitter: body.twitter,
       instagram: body.instagram,
-      github: body.github
+      github: body.github,
+      created_by: body.created_by
     })
     .save()
     .then(contact => {
-      res.json('Successfully created:', contact);
+      res.json({ success: 'true' });
     })
     .catch(err => {
       res.json(err);
-    })
+    });
 });
 
-router.get(':id', isAuthenticated, (req, res) => {
+router.get('/:id', isAuthenticated, (req, res) => {
   let id = req.params.id;
 
   return Contact.where({ id: id })
@@ -95,11 +96,7 @@ router.put('/:id', isAuthenticated, (req, res) => {
   let body = req.body;
 
   return Contact.where({ id: id })
-    .fetch({
-      columns: ['name', 'address', 'mobile', 'work', 'home', 'email', 'twitter', 'instagram', 'github']
-    })
     .save({
-      user_id: req.user.id,
       name: body.name,
       address: body.address,
       mobile: body.mobile,
@@ -108,10 +105,10 @@ router.put('/:id', isAuthenticated, (req, res) => {
       email: body.email,
       twitter: body.twitter,
       instagram: body.instagram,
-      github: body.github
+      github: body.github,
     }, { patch: true })
     .then(contact => {
-      res.json('Successfully edited');
+      res.json({ success: 'true' });
     })
     .catch(err => {
       res.json(err);
@@ -122,10 +119,9 @@ router.delete('/:id', isAuthenticated, (req, res) => {
   let id = req.params.id;
 
   return new Contact({ id: id })
-    .fetch({ createdby: id })
     .destroy()
     .then(() => {
-      res.json('Successfully deleted')
+      res.json({ success: 'true' })
     })
     .catch(err => {
       res.status(500).json(err)

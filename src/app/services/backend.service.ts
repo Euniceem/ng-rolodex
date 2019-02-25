@@ -12,11 +12,23 @@ export class BackendService {
   ) { }
 
   contacts() {
-    return this.http.get('/').toPromise();
+    return this.http.get('api/contacts').toPromise();
   }
 
   addContact(card) {
-    return this.http.post('/', card).toPromise();
+    return this.http.post('api/contacts', card).toPromise();
+  }
+
+  contactId(id, contact) {
+    return this.http.get(`api/contacts/${id}`).toPromise();
+  }
+
+  editContact(id, contact) {
+    return this.http.put(`api/contacts/${id}`, contact).toPromise();
+  }
+
+  deleteContact(id) {
+    return this.http.delete(`api/contacts/${id}`).toPromise();
   }
 
   profile() {
