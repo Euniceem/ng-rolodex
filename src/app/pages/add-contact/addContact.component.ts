@@ -30,7 +30,7 @@ export class AddContactComponent implements OnInit {
       github: ''
     }
 
-  isEmailInValid: boolean = true;
+  isEmailInValid: boolean = false;
   invalidAddContact: boolean = false;
 
   constructor(
@@ -42,7 +42,7 @@ export class AddContactComponent implements OnInit {
     const { email } = this.addContactDataForm;
 
     if (!email) { this.isEmailInValid = true; }
-    else if (email.includes('@')) { this.isEmailInValid = true; }
+    else if (email.includes('@')) { this.isEmailInValid = false; }
     else { this.isEmailInValid = false; }
   }
 
