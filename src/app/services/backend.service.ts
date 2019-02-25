@@ -11,6 +11,10 @@ export class BackendService {
     private session: SessionService
   ) { }
 
+  searchContacts(term) {
+    return this.http.get(`api/contacts/search/${term}`).toPromise()
+  }
+
   contacts() {
     return this.http.get('api/contacts').toPromise();
   }
