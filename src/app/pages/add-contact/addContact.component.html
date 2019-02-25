@@ -9,34 +9,34 @@
       <label for="name">Name: </label>
     </div>
     <div>
-      <input class="input" type="text" name="name">
+      <input class="input" type="text" name="name" [(ngModel)]="addContactDataForm.name">
     </div>
 
     <div>
       <label for="name">Address: </label>
     </div>
     <div>
-      <input class="input" type="text" name="address">
+      <input class="input" type="text" name="address" [(ngModel)]="addContactDataForm.address">
     </div>
 
     <div>
       <label for="name">Mobile: </label>
     </div>
     <div>
-      <input class="input" type="text" name="mobile">
+      <input class="input" type="text" name="mobile" [(ngModel)]="addContactDataForm.mobile">
     </div>
 
     <div>
       <label for="name">Work: </label>
     </div>
     <div>
-      <input class="input" type="text" name="work">
-
+      <input class="input" type="text" name="work" [(ngModel)]="addContactDataForm.work">
       <div>
+
         <label for="name">Home: </label>
       </div>
       <div>
-        <input class="input" type="text" name="home">
+        <input class="input" type="text" name="home" [(ngModel)]="addContactDataForm.home">
       </div>
     </div>
 
@@ -44,34 +44,43 @@
       <label for="name">Email: </label>
     </div>
     <div>
-      <input class="input" type="text" name="email">
+      <input class="input" type="text" name="email" [class.error]="isEmailInValid && email.touched"
+        [(ngModel)]="addContactDataForm.email" (keyup)="validateEmail()" #email="ngModel">
+    </div>
+
+    <div class="err" [hidden]="!(isEmailInValid && email.touched)">
+      Email address should have a '@'
     </div>
 
     <div>
       <label for="name">Twitter: </label>
     </div>
     <div>
-      <input class="input" type="text" name="twitter">
+      <input class="input" type="text" name="twitter" [(ngModel)]="addContactDataForm.twitter">
     </div>
 
     <div>
       <label for="name">Instagram: </label>
     </div>
     <div>
-      <input class="input" type="text" name="instagram">
+      <input class="input" type="text" name="instagram" [(ngModel)]="addContactDataForm.instagram">
     </div>
 
     <div>
       <label for="name">Github: </label>
     </div>
     <div>
-      <input class="input" type="text" name="github">
+      <input class="input" type="text" name="github" [(ngModel)]="addContactDataForm.github">
     </div>
 
     <div>
-      <button class="btn">
+      <button class="btn" (click)="submitForm()" [disabled]="isEmailInValid">
         Submit
       </button>
+    </div>
+
+    <div class="err" [hidden]="!invalidAddContact">
+      Contact info is invalid, please try again
     </div>
 
   </form>
