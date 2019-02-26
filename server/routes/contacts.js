@@ -65,7 +65,7 @@ router.post('/', isAuthenticated, (req, res) => {
       twitter: body.twitter,
       instagram: body.instagram,
       github: body.github,
-      created_by: body.created_by
+      created_by: userId.created_by
     })
     .save()
     .then(contact => {
