@@ -33,10 +33,10 @@ export class EditContactComponent implements OnInit {
     }
 
   invalidEditContact: boolean = false;
-  isMobileNumberInValid: boolean = true;
-  isHomeNumberInValid: boolean = true;
-  isWorkNumberInValid: boolean = true;
-  isEmailInValid: boolean = true;
+  isMobileNumberInvalid: boolean = true;
+  isHomeNumberInvalid: boolean = true;
+  isWorkNumberInvalid: boolean = true;
+  isEmailInvalid: boolean = true;
 
   constructor(
     private backend: BackendService,
@@ -49,34 +49,34 @@ export class EditContactComponent implements OnInit {
   validateMobileNumber() {
     const { mobile } = this.editContactData;
 
-    if (mobile.length <= 11) { this.isMobileNumberInValid = true }
-    else if (!mobile.includes('-')) { this.isMobileNumberInValid = true }
-    else { this.isMobileNumberInValid = false }
+    if (mobile.length <= 11) { this.isMobileNumberInvalid = true }
+    else if (!mobile.includes('-')) { this.isMobileNumberInvalid = true }
+    else { this.isMobileNumberInvalid = false }
   }
 
   validateWorkNumber() {
     const { work } = this.editContactData;
 
-    if (work.length <= 11) { this.isWorkNumberInValid = true }
-    else if (!work.includes('-')) { this.isWorkNumberInValid = true }
-    else { this.isWorkNumberInValid = false }
+    if (work.length <= 11) { this.isWorkNumberInvalid = true }
+    else if (!work.includes('-')) { this.isWorkNumberInvalid = true }
+    else { this.isWorkNumberInvalid = false }
   }
 
   validateHomeNumber() {
     const { home } = this.editContactData;
 
-    if (home.length <= 11) { this.isHomeNumberInValid = true }
-    else if (!home.includes('-')) { this.isHomeNumberInValid = true }
-    else { this.isHomeNumberInValid = false }
+    if (home.length <= 11) { this.isHomeNumberInvalid = true }
+    else if (!home.includes('-')) { this.isHomeNumberInvalid = true }
+    else { this.isHomeNumberInvalid = false }
   }
 
   validateEmail() {
     const { email } = this.editContactData;
 
-    if (!email) { this.isEmailInValid = true; }
-    else if (!email.includes('@')) { this.isEmailInValid = true; }
-    else if (!email.includes('.')) { this.isEmailInValid = true; }
-    else { this.isEmailInValid = false; }
+    if (!email) { this.isEmailInvalid = true; }
+    else if (!email.includes('@')) { this.isEmailInvalid = true; }
+    else if (!email.includes('.')) { this.isEmailInvalid = true; }
+    else { this.isEmailInvalid = false; }
   }
 
   editSubmit() {
@@ -90,7 +90,7 @@ export class EditContactComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.backend.getContact(this.contactId, this.editContactData)
+    this.backend.getContact(this.contactId)
       .then((data) => {
         for (var key in data) {
           if (this.editContactData.hasOwnProperty(key)) {

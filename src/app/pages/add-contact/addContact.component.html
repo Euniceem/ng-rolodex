@@ -23,11 +23,11 @@
       <label for="name">Mobile: </label>
     </div>
     <div>
-      <input class="input" type="text" name="mobile" [class.error]="isMobileNumberInValid && mobile.touched"
+      <input class="input" type="text" name="mobile" [class.error]="isMobileNumberInvalid && mobile.touched"
         [(ngModel)]="addContactDataForm.mobile" (keyup)="validateMobileNumber()" #mobile="ngModel">
     </div>
 
-    <div class="err" [hidden]="!(isMobileNumberInValid && mobile.touched)">
+    <div class="err" [hidden]="!(isMobileNumberInvalid && mobile.touched)">
       Needs to have at least 10 numbers with '-' to be valid
     </div>
 
@@ -35,11 +35,11 @@
       <label for="name">Work: </label>
     </div>
     <div>
-      <input class="input" type="text" name="work" [class.error]="isWorkNumberInValid && work.touched"
+      <input class="input" type="text" name="work" [class.error]="isWorkNumberInvalid && work.touched"
         [(ngModel)]="addContactDataForm.work" (keyup)="validateWorkNumber()" #work="ngModel">
     </div>
 
-    <div class="err" [hidden]="!(isWorkNumberInValid && work.touched)">
+    <div class="err" [hidden]="!(isWorkNumberInvalid && work.touched)">
       Needs to have at least 10 numbers with '-' to be valid
     </div>
 
@@ -47,11 +47,11 @@
       <label for=" name">Home: </label>
     </div>
     <div>
-      <input class="input" type="text" name="home" [class.error]="isHomeNumberInValid && home.touched"
+      <input class="input" type="text" name="home" [class.error]="isHomeNumberInvalid && home.touched"
         [(ngModel)]="addContactDataForm.home" (keyup)="validateHomeNumber()" #home="ngModel">
     </div>
 
-    <div class="err" [hidden]="!(isHomeNumberInValid && home.touched)">
+    <div class="err" [hidden]="!(isHomeNumberInvalid && home.touched)">
       Needs to have at least 10 numbers with '-' to be valid
     </div>
 
@@ -59,11 +59,11 @@
       <label for="name">Email: </label>
     </div>
     <div>
-      <input class="input" type="text" name="email" [class.error]="isEmailInValid && email.touched"
+      <input class="input" type="text" name="email" [class.error]="isEmailInvalid && email.touched"
         [(ngModel)]="addContactDataForm.email" (keyup)="validateEmail()" #email="ngModel">
     </div>
 
-    <div class="err" [hidden]="!(isEmailInValid && email.touched)">
+    <div class="err" [hidden]="!(isEmailInvalid && email.touched)">
       Email address needs to have '@' and a period to be valid
     </div>
 
@@ -90,12 +90,12 @@
 
     <div>
       <button class="btn" (click)="submitForm()"
-        [disabled]="isEmailInValid || isMobileNumberInValid || isWorkNumberInValid || isHomeNumberInValid">
+        [disabled]="isEmailInvalid || isMobileNumberInvalid || isWorkNumberInvalid || isHomeNumberInvalid">
         Submit
       </button>
     </div>
 
-    <div class="err" [hidden]="invalidAddContact">
+    <div class="err" [hidden]="!invalidAddContact">
       Contact info is invalid, please try again
     </div>
 

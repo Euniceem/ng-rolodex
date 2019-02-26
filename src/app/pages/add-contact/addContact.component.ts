@@ -30,11 +30,11 @@ export class AddContactComponent {
       github: ''
     }
 
-  isEmailInValid: boolean = true;
-  isMobileNumberInValid: boolean = true;
-  isHomeNumberInValid: boolean = true;
-  isWorkNumberInValid: boolean = true;
-  invalidAddContact: boolean = true;
+  isEmailInvalid: boolean = true;
+  isMobileNumberInvalid: boolean = true;
+  isHomeNumberInvalid: boolean = true;
+  isWorkNumberInvalid: boolean = true;
+  invalidAddContact: boolean = false;
 
   constructor(
     private backend: BackendService,
@@ -44,34 +44,34 @@ export class AddContactComponent {
   validateMobileNumber() {
     const { mobile } = this.addContactDataForm;
 
-    if (mobile.length <= 11) { this.isMobileNumberInValid = true }
-    else if (!mobile.includes('-')) { this.isMobileNumberInValid = true }
-    else { this.isMobileNumberInValid = false }
+    if (mobile.length <= 11) { this.isMobileNumberInvalid = true }
+    else if (!mobile.includes('-')) { this.isMobileNumberInvalid = true }
+    else { this.isMobileNumberInvalid = false }
   }
 
   validateWorkNumber() {
     const { work } = this.addContactDataForm;
 
-    if (work.length <= 11) { this.isWorkNumberInValid = true }
-    else if (!work.includes('-')) { this.isWorkNumberInValid = true }
-    else { this.isWorkNumberInValid = false }
+    if (work.length <= 11) { this.isWorkNumberInvalid = true }
+    else if (!work.includes('-')) { this.isWorkNumberInvalid = true }
+    else { this.isWorkNumberInvalid = false }
   }
 
   validateHomeNumber() {
     const { home } = this.addContactDataForm;
 
-    if (home.length <= 11) { this.isHomeNumberInValid = true }
-    else if (!home.includes('-')) { this.isHomeNumberInValid = true }
-    else { this.isHomeNumberInValid = false }
+    if (home.length <= 11) { this.isHomeNumberInvalid = true }
+    else if (!home.includes('-')) { this.isHomeNumberInvalid = true }
+    else { this.isHomeNumberInvalid = false }
   }
 
   validateEmail() {
     const { email } = this.addContactDataForm;
 
-    if (!email) { this.isEmailInValid = true; }
-    else if (!email.includes('@')) { this.isEmailInValid = true; }
-    else if (!email.includes('.')) { this.isEmailInValid = true; }
-    else { this.isEmailInValid = false; }
+    if (!email) { this.isEmailInvalid = true; }
+    else if (!email.includes('@')) { this.isEmailInvalid = true; }
+    else if (!email.includes('.')) { this.isEmailInvalid = true; }
+    else { this.isEmailInvalid = false; }
   }
 
   submitForm() {
