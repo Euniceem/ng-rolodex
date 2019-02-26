@@ -19,8 +19,8 @@ export class BackendService {
     return this.http.post('api/contacts', card).toPromise();
   }
 
-  contactId(id, contact) {
-    return this.http.get(`api/contacts/${id}`).toPromise();
+  getContact(id, contact) {
+    return this.http.get(`api/contacts/${id}`, contact).toPromise();
   }
 
   editContact(id, contact) {
