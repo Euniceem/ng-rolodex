@@ -23,21 +23,36 @@
       <label for="name">Mobile: </label>
     </div>
     <div>
-      <input class="input" type="text" name="mobile" [(ngModel)]="addContactDataForm.mobile">
+      <input class="input" type="text" name="mobile" [class.error]="isPhoneNumberInValid && mobile.touched"
+        [(ngModel)]="addContactDataForm.mobile" (keyup)="validatePhoneNumber" #mobile="ngModel">
+    </div>
+
+    <div class="err" [hidden]="!(isPhoneNumberInValid && mobile.touched)">
+      Needs to have at least 9 numbers with '-' to be valid
     </div>
 
     <div>
       <label for="name">Work: </label>
     </div>
     <div>
-      <input class="input" type="text" name="work" [(ngModel)]="addContactDataForm.work">
-      <div>
+      <input class="input" type="text" name="work" [class.error]="isPhoneNumberInValid && work.touched"
+        [(ngModel)]="addContactDataForm.work" (keyup)="validatePhoneNumber" #work="ngModel">
+    </div>
 
-        <label for="name">Home: </label>
-      </div>
-      <div>
-        <input class="input" type="text" name="home" [(ngModel)]="addContactDataForm.home">
-      </div>
+    <div class="err" [hidden]="!(isPhoneNumberInValid && work.touched)">
+      Needs to have at least 9 numbers with '-' to be valid
+    </div>
+
+    <div>
+      <label for=" name">Home: </label>
+    </div>
+    <div>
+      <input class="input" type="text" name="home" [class.error]="isPhoneNumberInValid && home.touched"
+        [(ngModel)]="addContactDataForm.home" (keyup)="validatePhoneNumber" #home="ngModel">
+    </div>
+
+    <div class="err" [hidden]="!(isPhoneNumberInValid && home.touched)">
+      Needs to have at least 9 numbers with '-' to be valid
     </div>
 
     <div>
@@ -49,7 +64,7 @@
     </div>
 
     <div class="err" [hidden]="!(isEmailInValid && email.touched)">
-      Email address should have a '@'
+      Email address needs to have '@' and a period to be valid
     </div>
 
     <div>
@@ -74,12 +89,12 @@
     </div>
 
     <div>
-      <button class="btn" (click)="submitForm()" [disabled]="isEmailInValid">
+      <button class="btn" (click)="submitForm()" [disabled]="isEmailInValid || isPhoneNumberInValid">
         Submit
       </button>
     </div>
 
-    <div class="err" [hidden]="!invalidAddContact">
+    <div class="err" [hidden]="invalidAddContact">
       Contact info is invalid, please try again
     </div>
 

@@ -6,7 +6,7 @@ import { BackendService } from '../../services/backend.service';
   templateUrl: './addContact.component.html',
   styleUrls: ['./addContact.component.scss']
 })
-export class AddContactComponent implements OnInit {
+export class AddContactComponent {
 
   addContactDataForm: {
     name: string,
@@ -31,28 +31,30 @@ export class AddContactComponent implements OnInit {
     }
 
   isEmailInValid: boolean = true;
-  invalidAddContact: boolean = false;
+  isPhoneNumberInValid: boolean = true;
+  invalidAddContact: boolean = true;
 
   constructor(
     private backend: BackendService,
     private router: Router
   ) { }
 
+  validatePhoneNumber() {
+    const { mobile, work, home } = this.addContactDataForm;
+
+    if (mobile.length < 9 || work.length < 9 || home.length < 9) { this.isPhoneNumberInValid = true }
+    else if (!mobile.includes('-') || !work.includes('-') || !home.includes('-')) { this.isPhoneNumberInValid = true }
+    else if (typeof mobile !== 'number' || typeof work !== 'number' || typeof home !== 'number') { this.isPhoneNumberInValid = true }
+    else { this.isPhoneNumberInValid = false }
+  }
+
   validateEmail() {
     const { email } = this.addContactDataForm;
 
     if (!email) { this.isEmailInValid = true; }
-    else if (email.includes('@')) { this.isEmailInValid = true; }
+    else if (!email.includes('@')) { this.isEmailInValid = true; }
+    else if (!email.includes('.')) { this.isEmailInValid = true; }
     else { this.isEmailInValid = false; }
-  }
-
-  ngOnInit() {
-    return this.backend.contacts()
-      .then((data) => {
-        for (var key in data) {
-          this.addContactDataForm[key] = data[key];
-        }
-      })
   }
 
   submitForm() {
