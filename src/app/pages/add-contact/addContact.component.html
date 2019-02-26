@@ -23,36 +23,36 @@
       <label for="name">Mobile: </label>
     </div>
     <div>
-      <input class="input" type="text" name="mobile" [class.error]="isPhoneNumberInValid && mobile.touched"
-        [(ngModel)]="addContactDataForm.mobile" (keyup)="validatePhoneNumber" #mobile="ngModel">
+      <input class="input" type="text" name="mobile" [class.error]="isMobileNumberInValid && mobile.touched"
+        [(ngModel)]="addContactDataForm.mobile" (keyup)="validateMobileNumber()" #mobile="ngModel">
     </div>
 
-    <div class="err" [hidden]="!(isPhoneNumberInValid && mobile.touched)">
-      Needs to have at least 9 numbers with '-' to be valid
+    <div class="err" [hidden]="!(isMobileNumberInValid && mobile.touched)">
+      Needs to have at least 10 numbers with '-' to be valid
     </div>
 
     <div>
       <label for="name">Work: </label>
     </div>
     <div>
-      <input class="input" type="text" name="work" [class.error]="isPhoneNumberInValid && work.touched"
-        [(ngModel)]="addContactDataForm.work" (keyup)="validatePhoneNumber" #work="ngModel">
+      <input class="input" type="text" name="work" [class.error]="isWorkNumberInValid && work.touched"
+        [(ngModel)]="addContactDataForm.work" (keyup)="validateWorkNumber()" #work="ngModel">
     </div>
 
-    <div class="err" [hidden]="!(isPhoneNumberInValid && work.touched)">
-      Needs to have at least 9 numbers with '-' to be valid
+    <div class="err" [hidden]="!(isWorkNumberInValid && work.touched)">
+      Needs to have at least 10 numbers with '-' to be valid
     </div>
 
     <div>
       <label for=" name">Home: </label>
     </div>
     <div>
-      <input class="input" type="text" name="home" [class.error]="isPhoneNumberInValid && home.touched"
-        [(ngModel)]="addContactDataForm.home" (keyup)="validatePhoneNumber" #home="ngModel">
+      <input class="input" type="text" name="home" [class.error]="isHomeNumberInValid && home.touched"
+        [(ngModel)]="addContactDataForm.home" (keyup)="validateHomeNumber()" #home="ngModel">
     </div>
 
-    <div class="err" [hidden]="!(isPhoneNumberInValid && home.touched)">
-      Needs to have at least 9 numbers with '-' to be valid
+    <div class="err" [hidden]="!(isHomeNumberInValid && home.touched)">
+      Needs to have at least 10 numbers with '-' to be valid
     </div>
 
     <div>
@@ -89,7 +89,8 @@
     </div>
 
     <div>
-      <button class="btn" (click)="submitForm()" [disabled]="isEmailInValid || isPhoneNumberInValid">
+      <button class="btn" (click)="submitForm()"
+        [disabled]="isEmailInValid || isMobileNumberInValid || isWorkNumberInValid || isHomeNumberInValid">
         Submit
       </button>
     </div>

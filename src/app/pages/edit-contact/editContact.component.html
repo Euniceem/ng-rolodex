@@ -23,21 +23,36 @@
       <label for="name">Mobile: </label>
     </div>
     <div>
-      <input class="input" type="text" name="mobile" [(ngModel)]="this.editContactData.mobile">
+      <input class="input" type="text" name="mobile" [class.error]="isMobileNumberInValid && mobile.touched"
+        [(ngModel)]="this.editContactData.mobile" (keyup)="validateMobileNumber()" #mobile="ngModel">
+    </div>
+
+    <div class="err" [hidden]="!(isMobileNumberInValid && mobile.touched)">
+      Needs to have at least 10 numbers with '-' to be valid
     </div>
 
     <div>
       <label for="name">Work: </label>
     </div>
     <div>
-      <input class="input" type="text" name="work" [(ngModel)]="this.editContactData.work">
+      <input class="input" type="text" name="work" [class.error]="isWorkNumberInValid && work.touched"
+        [(ngModel)]="this.editContactData.work" (keyup)="validateWorkNumber()" #work="ngModel">
+    </div>
+
+    <div class="err" [hidden]="!(isWorkNumberInValid && work.touched)">
+      Needs to have at least 10 numbers with '-' to be valid
     </div>
 
     <div>
       <label for="name">Home: </label>
     </div>
     <div>
-      <input class="input" type="text" name="home" [(ngModel)]="this.editContactData.home">
+      <input class="input" type="text" name="home" [class.error]="isHomeNumberInValid && home.touched"
+        [(ngModel)]="this.editContactData.home" (keyup)="validateHomeNumber()" #home="ngModel">
+    </div>
+
+    <div class="err" [hidden]="!(isHomeNumberInValid && home.touched)">
+      Needs to have at least 10 numbers with '-' to be valid
     </div>
 
     <div>
@@ -69,7 +84,8 @@
     </div>
 
     <div>
-      <button class="btn" (click)="editSubmit()">
+      <button class="btn" (click)="editSubmit()"
+        [disabled]="isEmailInValid || isMobileNumberInValid || isWorkNumberInValid || isHomeNumberInValid">
         Submit
       </button>
     </div>

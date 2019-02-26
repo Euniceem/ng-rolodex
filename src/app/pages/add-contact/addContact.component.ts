@@ -31,7 +31,9 @@ export class AddContactComponent {
     }
 
   isEmailInValid: boolean = true;
-  isPhoneNumberInValid: boolean = true;
+  isMobileNumberInValid: boolean = true;
+  isHomeNumberInValid: boolean = true;
+  isWorkNumberInValid: boolean = true;
   invalidAddContact: boolean = true;
 
   constructor(
@@ -39,13 +41,28 @@ export class AddContactComponent {
     private router: Router
   ) { }
 
-  validatePhoneNumber() {
-    const { mobile, work, home } = this.addContactDataForm;
+  validateMobileNumber() {
+    const { mobile } = this.addContactDataForm;
 
-    if (mobile.length < 9 || work.length < 9 || home.length < 9) { this.isPhoneNumberInValid = true }
-    else if (!mobile.includes('-') || !work.includes('-') || !home.includes('-')) { this.isPhoneNumberInValid = true }
-    else if (typeof mobile !== 'number' || typeof work !== 'number' || typeof home !== 'number') { this.isPhoneNumberInValid = true }
-    else { this.isPhoneNumberInValid = false }
+    if (mobile.length <= 11) { this.isMobileNumberInValid = true }
+    else if (!mobile.includes('-')) { this.isMobileNumberInValid = true }
+    else { this.isMobileNumberInValid = false }
+  }
+
+  validateWorkNumber() {
+    const { work } = this.addContactDataForm;
+
+    if (work.length <= 11) { this.isWorkNumberInValid = true }
+    else if (!work.includes('-')) { this.isWorkNumberInValid = true }
+    else { this.isWorkNumberInValid = false }
+  }
+
+  validateHomeNumber() {
+    const { home } = this.addContactDataForm;
+
+    if (home.length <= 11) { this.isHomeNumberInValid = true }
+    else if (!home.includes('-')) { this.isHomeNumberInValid = true }
+    else { this.isHomeNumberInValid = false }
   }
 
   validateEmail() {
@@ -66,5 +83,4 @@ export class AddContactComponent {
         this.invalidAddContact = true;
       })
   }
-
 }
