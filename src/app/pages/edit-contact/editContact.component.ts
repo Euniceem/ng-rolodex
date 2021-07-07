@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { BackendService } from '../../services/backend.service';
 
 @Component({
-  templateUrl: './addContact.component.html',
-  styleUrls: ['./addContact.component.scss']
+  templateUrl: './editContact.component.html',
+  styleUrls: ['./editContact.component.scss']
 })
-export class AddContactComponent {
+export class EditContactComponent implements OnInit {
 
-  addContactDataForm: {
+  contactId: number = null;
+
+  editContactData: {
     name: string,
     address: string,
     mobile: string,
@@ -30,19 +32,22 @@ export class AddContactComponent {
       github: ''
     }
 
-  isEmailInvalid: boolean = true;
+  invalidEditContact: boolean = false;
   isMobileNumberInvalid: boolean = true;
   isHomeNumberInvalid: boolean = true;
   isWorkNumberInvalid: boolean = true;
-  invalidAddContact: boolean = false;
+  isEmailInvalid: boolean = true;
 
   constructor(
     private backend: BackendService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+    this.contactId = Number(this.route.snapshot.paramMap.get('id'));
+  }
 
   validateMobileNumber() {
-    const { mobile } = this.addContactDataForm;
+    const { mobile } = this.editContactData;
 
     if (mobile.length <= 11) { this.isMobileNumberInvalid = true }
     else if (!mobile.includes('-')) { this.isMobileNumberInvalid = true }
@@ -50,7 +55,7 @@ export class AddContactComponent {
   }
 
   validateWorkNumber() {
-    const { work } = this.addContactDataForm;
+    const { work } = this.editContactData;
 
     if (work.length <= 11) { this.isWorkNumberInvalid = true }
     else if (!work.includes('-')) { this.isWorkNumberInvalid = true }
@@ -58,7 +63,7 @@ export class AddContactComponent {
   }
 
   validateHomeNumber() {
-    const { home } = this.addContactDataForm;
+    const { home } = this.editContactData;
 
     if (home.length <= 11) { this.isHomeNumberInvalid = true }
     else if (!home.includes('-')) { this.isHomeNumberInvalid = true }
@@ -66,7 +71,7 @@ export class AddContactComponent {
   }
 
   validateEmail() {
-    const { email } = this.addContactDataForm;
+    const { email } = this.editContactData;
 
     if (!email) { this.isEmailInvalid = true; }
     else if (!email.includes('@')) { this.isEmailInvalid = true; }
@@ -74,13 +79,24 @@ export class AddContactComponent {
     else { this.isEmailInvalid = false; }
   }
 
-  submitForm() {
-    this.backend.addContact(this.addContactDataForm)
+  editSubmit() {
+    this.backend.editContact(this.contactId, this.editContactData)
       .then(() => {
         this.router.navigate(['/contacts']);
       })
       .catch((err) => {
-        this.invalidAddContact = true;
-      })
+        return this.invalidEditContact = true;
+      });
+  }
+
+  ngOnInit() {
+    this.backend.getContact(this.contactId)
+      .then((data) => {
+        for (var key in data) {
+          if (this.editContactData.hasOwnProperty(key)) {
+            this.editContactData[key] = data[key]
+          }
+        }
+      });
   }
 }

@@ -11,6 +11,26 @@ export class BackendService {
     private session: SessionService
   ) { }
 
+  contacts() {
+    return this.http.get('api/contacts').toPromise();
+  }
+
+  addContact(card) {
+    return this.http.post('api/contacts', card).toPromise();
+  }
+
+  getContact(id) {
+    return this.http.get(`api/contacts/${id}`).toPromise();
+  }
+
+  editContact(id, contact) {
+    return this.http.put(`api/contacts/${id}`, contact).toPromise();
+  }
+
+  deleteContact(id) {
+    return this.http.delete(`api/contacts/${id}`).toPromise();
+  }
+
   profile() {
     const user = this.session.getSession();
     return this.http.get(`/api/profile?user=${user.id}`).toPromise();

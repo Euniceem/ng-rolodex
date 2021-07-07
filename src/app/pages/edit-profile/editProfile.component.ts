@@ -14,11 +14,11 @@ export class EditProfileComponent implements OnInit {
     email: string,
     address: string
   } = {
-    username: '',
-    name: '',
-    email: '',
-    address: ''
-  }
+      username: '',
+      name: '',
+      email: '',
+      address: ''
+    }
 
   invalidEditProfile: boolean = false;
 
@@ -35,16 +35,16 @@ export class EditProfileComponent implements OnInit {
       .catch((err) => {
         return this.invalidEditProfile = true;
       });
-    }
+  }
 
-  ngOnInit () {
+  ngOnInit() {
     this.backend.profile()
-    .then((data)=> {
-      for(var key in data){
-        if(this.editProfileData.hasOwnProperty(key)){
-          this.editProfileData[key] = data[key]
+      .then((data) => {
+        for (var key in data) {
+          if (this.editProfileData.hasOwnProperty(key)) {
+            this.editProfileData[key] = data[key]
+          }
         }
-      }
-    });
+      });
   }
 };
