@@ -1,0 +1,59 @@
+$button-color: #358ED8;
+
+.header-container {
+  margin: 0;
+  padding: 0;
+  background-color: grey;
+  display: inline-flex;
+  justify-content: flex-end;
+  width: 100%;
+  
+  .header-left{
+    width: 50%;
+    text-align: center;
+    display: flex;
+    margin: auto;
+    justify-content: flex-start;
+
+    .title{
+      font-size: 30px; 
+      font-family: 'Bungee Inline', cursive;
+
+      a{text-decoration: none; 
+        color: white; 
+    } 
+    } 
+  }
+
+  .header-right{
+    width: 100%;
+    display: flex;
+
+    ul{
+      display: inline-flex;
+      margin: auto;
+    
+      li{
+        list-style-type: none;
+        margin-right: 15px;
+        a {text-decoration: none; color: white;} 
+      }
+    }
+        button{
+          background-color: $button-color;
+          margin-top: 25%;
+          border-radius: 12px;
+          padding: 12px, 28px;
+          font-size: 14px;
+          color: white;
+          width: 70px;
+          height: 40px;
+        }
+    
+        button:hover{
+          background-color: white;
+          color: $button-color;
+          border: solid 1px $button-color;
+        }
+  }
+  }

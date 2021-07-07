@@ -1,0 +1,42 @@
+<div class="header-container">
+  <div class="header-left">
+    <div class=title>
+      <h2>
+        <a routerLink="/">ROLODEX</a>
+      </h2>
+    </div>
+  </div>
+
+  <div class="header-right">
+
+    <ul>
+      <li>
+        <h2>
+          <a routerLink="contact">View All Contacts</a>
+        </h2>
+      </li>
+
+      <li>
+        <h2>
+          <a routerLink="add-contact">Create Contacts</a>
+        </h2>
+      </li>
+
+      <li>
+        <h2>
+          <a routerLink="profile">My Profile</a>
+        </h2>
+      </li>
+    </ul>
+
+    <div class="logged-in" *ngIf="isLoggedIn()">
+      Welcome, {{user.username}}!
+      <button (click)="logout()">Logout</button>
+    </div>
+
+    <div class="logged-out" *ngIf="!user.loggedIn">
+      <button (click)="login()">Login</button>
+    </div>
+
+  </div>
+</div>
